@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ระบบบริหารงานบุคคล — เลือกประเภทหน่วยงาน</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#eef2f6; --card:#ffffff; --ink:#1a2733; --muted:#5b6b7a; --line:#dfe6ee;
+    --muni:#1769aa; --muni-soft:#e7f1fb; --muni-ink:#0f4c7a;
+    --school:#1f8a56; --school-soft:#e6f6ee; --school-ink:#145e3a;
+    --brand:#0f4c7a;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    font-family:'Sarabun',system-ui,sans-serif;background:
+      radial-gradient(1200px 600px at 50% -200px,#dcebf8 0%,transparent 60%),var(--bg);
+    color:var(--ink);min-height:100vh;display:flex;flex-direction:column;align-items:center;
+    padding:32px 16px 40px;line-height:1.55;
+  }
+  .wrap{width:100%;max-width:880px}
+  header.top{text-align:center;margin-bottom:30px}
+  .crest{font-size:46px;line-height:1;margin-bottom:8px}
+  header.top h1{font-size:26px;font-weight:800;margin:0 0 6px;letter-spacing:-.2px}
+  header.top p{font-size:15.5px;color:var(--muted);margin:0}
+  .pick-label{text-align:center;font-size:14px;color:var(--muted);font-weight:600;margin:4px 0 18px;display:flex;align-items:center;gap:12px;justify-content:center}
+  .pick-label::before,.pick-label::after{content:"";height:1px;width:48px;background:var(--line)}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:620px){.grid{grid-template-columns:1fr}}
+  .card{
+    background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px 24px 22px;
+    display:flex;flex-direction:column;box-shadow:0 10px 30px rgba(20,50,80,.06);position:relative;overflow:hidden;
+  }
+  .card::before{content:"";position:absolute;inset:0 0 auto 0;height:5px}
+  .card.muni::before{background:var(--muni)}
+  .card.school::before{background:var(--school)}
+  .ic{width:58px;height:58px;border-radius:15px;display:grid;place-items:center;font-size:30px;margin-bottom:14px}
+  .muni .ic{background:var(--muni-soft)}
+  .school .ic{background:var(--school-soft)}
+  .card h2{font-size:20px;font-weight:800;margin:0 0 4px}
+  .card .sub{font-size:14px;color:var(--muted);margin:0 0 6px}
+  .tags{font-size:12.5px;color:var(--muted);margin:0 0 18px;min-height:20px}
+  .tag{display:inline-block;background:#f1f5f9;border-radius:999px;padding:2px 10px;margin:2px 4px 2px 0;font-weight:500}
+  .spacer{flex:1}
+  .btns{display:flex;flex-direction:column;gap:9px}
+  .btn{display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;font-weight:700;
+    font-size:15.5px;border-radius:12px;padding:13px 16px;transition:.15s;border:1.5px solid transparent}
+  .btn.primary{color:#fff}
+  .muni .btn.primary{background:var(--muni)} .muni .btn.primary:hover{background:#13578f}
+  .school .btn.primary{background:var(--school)} .school .btn.primary:hover{background:#1a7549}
+  .btn.ghost{background:#fff}
+  .muni .btn.ghost{border-color:#cfe1f3;color:var(--muni-ink)} .muni .btn.ghost:hover{background:var(--muni-soft)}
+  .school .btn.ghost{border-color:#cce9d8;color:var(--school-ink)} .school .btn.ghost:hover{background:var(--school-soft)}
+  .note{max-width:620px;margin:26px auto 0;text-align:center;font-size:13px;color:var(--muted);line-height:1.7}
+  footer{margin-top:28px;text-align:center;font-size:12.5px;color:var(--muted)}
+  footer b{color:var(--ink)}
+  @media(prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --bg:#0e1621;--card:#16202c;--ink:#e8eef4;--muted:#9fb0bf;--line:#273544;
+      --muni-soft:#13314a;--muni-ink:#7fbbec;--school-soft:#123726;--school-ink:#79d6a4;
+    }
+    :root:not([data-theme="light"]) body{background:
+      radial-gradient(1200px 600px at 50% -200px,#13263a 0%,transparent 60%),var(--bg)}
+    :root:not([data-theme="light"]) .tag{background:#20303f}
+    :root:not([data-theme="light"]) .btn.ghost{background:#16202c}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="crest">🏛️</div>
+    <h1>ระบบบริหารงานบุคคล</h1>
+    <p>อำนวยความสะดวกงานบุคคล · ลดภาระงานซ้ำซ้อน · ตรวจสิทธิ์เครื่องราชอิสริยาภรณ์อัตโนมัติ</p>
+  </header>
+
+  <div class="pick-label">เลือกประเภทหน่วยงานของท่าน</div>
+
+  <div class="grid">
+    <!-- อปท -->
+    <div class="card muni">
+      <div class="ic">🏛️</div>
+      <h2>องค์กรปกครองส่วนท้องถิ่น</h2>
+      <p class="sub">เทศบาล · อบต. · อบจ. · เมืองพัทยา</p>
+      <div class="tags">
+        <span class="tag">ทะเบียนบุคลากร</span><span class="tag">วันลา/ลงเวลา</span>
+        <span class="tag">เครื่องราชฯ</span><span class="tag">หนังสือ/คำสั่ง</span><span class="tag">สลิปเงินเดือน</span>
+      </div>
+      <div class="spacer"></div>
+      <div class="btns">
+        <a class="btn primary" href="https://hr-trial.sribuaban.workers.dev/apply.html">📝 ขอใช้งานระบบ</a>
+        <a class="btn ghost" href="https://hr-trial.sribuaban.workers.dev">เข้าสู่ระบบ (มีบัญชีแล้ว)</a>
+      </div>
+    </div>
+
+    <!-- โรงเรียน -->
+    <div class="card school">
+      <div class="ic">🏫</div>
+      <h2>โรงเรียน (สพฐ)</h2>
+      <p class="sub">สถานศึกษาสังกัดสำนักงานคณะกรรมการการศึกษาขั้นพื้นฐาน</p>
+      <div class="tags">
+        <span class="tag">ทะเบียน/ประวัติครู</span><span class="tag">เครื่องราชฯ (บัญชี ๑๖)</span>
+        <span class="tag">ร.จ.พ.</span><span class="tag">นำเข้า Excel</span>
+      </div>
+      <div class="spacer"></div>
+      <div class="btns">
+        <a class="btn primary" href="https://hr-school.sribuaban.workers.dev/apply.html">📝 ขอใช้งานระบบ</a>
+        <a class="btn ghost" href="https://hr-school.sribuaban.workers.dev">เข้าสู่ระบบ (มีบัญชีแล้ว)</a>
+      </div>
+    </div>
+  </div>
+
+  <p class="note">
+    ระบบของแต่ละประเภทหน่วยงานแยกฐานข้อมูลออกจากกันเพื่อความปลอดภัยและความเป็นส่วนตัวของข้อมูล
+    หากไม่แน่ใจว่าหน่วยงานของท่านอยู่ประเภทใด หรือพบปัญหาการใช้งาน กรุณาติดต่อผู้พัฒนา
+  </p>
+
+  <footer>
+    พัฒนาโดย <b>นายธนันนัทธ์ วิภาสนรเศรษฐ์</b> · นักทรัพยากรบุคคลชำนาญการ เทศบาลตำบลศรีบัวบาน จ.ลำพูน
+  </footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,6 @@
+name = "hr-portal"
+compatibility_date = "2025-01-01"
+
+# หน้า Landing (ประตูเดียว) — static ล้วน ไม่ใช้ฐานข้อมูล
+# เสิร์ฟไฟล์จากโฟลเดอร์ public/ (index.html)
+assets = { directory = "./public" }
